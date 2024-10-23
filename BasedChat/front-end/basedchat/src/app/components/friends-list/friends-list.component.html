@@ -4,11 +4,11 @@
   </mat-card-header>
   <mat-list>
     <mat-list-item *ngFor="let friend of friends" (click)="selectFriend(friend._id)" class="friend-item">
-      <mat-icon matListIcon>person</mat-icon>
+      <img matListAvatar [src]="friend.avatar" alt="{{ friend.username }}'s avatar">
       <div matLine>{{ friend.username }}</div>
+      <div matLine class="friend-status">{{ friend.status }}</div>
     </mat-list-item>
   </mat-list>
-  <mat-divider></mat-divider>
   <div class="add-friend-section">
     <mat-form-field appearance="outline">
       <mat-label>Adicionar amigo</mat-label>

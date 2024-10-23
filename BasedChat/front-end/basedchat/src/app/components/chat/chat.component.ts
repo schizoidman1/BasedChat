@@ -20,44 +20,45 @@ export class ChatComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Inicialmente, nenhuma conversa está selecionada
-  }
-
-  loadMessages() {
     if (this.selectedUserId) {
-      this.chatService.getMessages(this.selectedUserId).subscribe(
-        (messages: any) => {
-          this.messages = messages;
-        },
-        err => {
-          console.error('Erro ao carregar mensagens', err);
-        }
-      );
+      this.loadMessages();
     }
   }
 
-  sendMessage() {
+  loadMessages(): void {
+    this.authService.getMessages(this.selectedUserId, this.page, this.limit)
+      .subscribe((messages) => {
+        // As novas mensagens são adicionadas ao topo
+        this.messages = [...messages, ...this.messages];
+      });
+  }
+
+  sendMessage(): void {
     if (this.messageContent.trim()) {
-      this.chatService.sendMessage({
-        receiverId: this.selectedUserId,
-        content: this.messageContent
-      }).subscribe(
-        () => {
-          this.messageContent = '';
-          this.loadMessages();
-        },
-        err => {
-          console.error('Erro ao enviar mensagem', err);
-        }
-      );
+      const newMessage = {
+        chatId: this.selectedUserId,
+        content: this.messageContent,
+        type: 'text' // Por enquanto, suportamos apenas texto
+      };
+
+      this.authService.sendMessage(newMessage).subscribe((message) => {
+        this.messages.push(message);
+        this.messageContent = '';
+      });
     }
+  }
+
+  onScrollUp(): void {
+    // Método chamado quando o usuário rola para o topo do chat
+    this.page++;
+    this.loadMessages();
   }
 
   onFriendSelected(friendId: string) {
     this.selectedUserId = friendId;
     this.loadMessages();
   }
-  
+
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);

@@ -1,9 +1,17 @@
 <div class="chat-container" *ngIf="selectedUserId; else selectFriendMessage">
-  <div class="messages">
-    <div *ngFor="let message of messages" [ngClass]="{'from-me': message.sender !== selectedUserId, 'from-them': message.sender === selectedUserId}">
-      <mat-card class="message-card">{{ message.content }}</mat-card>
+  <div class="messages" (scroll)="onScrollUp()">
+    <div *ngFor="let message of messages" [ngClass]="{'from-me': message.sender._id !== selectedUserId, 'from-them': message.sender._id === selectedUserId}">
+      <div *ngIf="message.type === 'text'" class="message-card">
+        <strong>{{ message.sender.username }}:</strong> {{ message.content }}
+      </div>
+      <div *ngIf="message.type === 'image'" class="message-card">
+        <strong>{{ message.sender.username }}:</strong>
+        <img [src]="message.attachments[0]?.url" alt="Image message" class="message-image">
+      </div>
+      <!-- Adicionar lógica similar para outros tipos, como vídeo, áudio, etc. -->
     </div>
   </div>
+
   <form (ngSubmit)="sendMessage()" class="message-input-form">
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Digite sua mensagem</mat-label>

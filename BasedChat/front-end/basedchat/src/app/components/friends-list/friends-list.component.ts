@@ -30,6 +30,7 @@ export class FriendsListComponent implements OnInit {
     );
   }
 
+
   addFriend() {
     if (this.newFriendUsername.trim()) {
       this.authService.addFriend(this.newFriendUsername).subscribe(
