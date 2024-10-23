@@ -1,1 +1,11 @@
-<router-outlet></router-outlet>
+<mat-toolbar color="primary">
+  <span>BasedChat</span>
+  <span class="spacer"></span>
+  <button mat-icon-button (click)="logout()" *ngIf="authService.isLoggedIn()">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
+
+<div class="main-container">
+  <router-outlet></router-outlet>
+</div>

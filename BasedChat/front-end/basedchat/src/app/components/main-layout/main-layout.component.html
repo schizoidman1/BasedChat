@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <span>BasedChat</span>
+  <span class="spacer"></span>
+  <button mat-icon-button (click)="logout()" *ngIf="authService.isLoggedIn()">
+    <mat-icon>logout</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <!-- Barra lateral para a lista de amigos -->
+  <mat-sidenav mode="side" opened>
+    <app-friends-list (selectFriendEvent)="onFriendSelected($event)"></app-friends-list>
+  </mat-sidenav>
+
+  <!-- Área de conteúdo principal para o chat -->
+  <mat-sidenav-content>
+    <app-chat [selectedUserId]="selectedUserId"></app-chat>
+  </mat-sidenav-content>
+</mat-sidenav-container>

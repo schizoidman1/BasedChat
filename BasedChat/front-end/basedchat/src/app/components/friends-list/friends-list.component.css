@@ -1,0 +1,18 @@
+.friends-card {
+  margin: 10px;
+  padding: 15px;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.friends-card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.friend-item {
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.friend-item:hover {
+  background-color: #eeeeee;
+}

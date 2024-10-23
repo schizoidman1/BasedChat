@@ -1,0 +1,30 @@
+.sidenav-container {
+  height: calc(100vh - 64px); /* Altura total menos a altura da toolbar */
+  background-color: #f9f9f9;
+}
+
+mat-toolbar {
+  background-color: #6200ea;
+  color: white;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+mat-sidenav {
+  width: 300px;
+  padding: 20px;
+  background-color: #ffffff;
+  border-right: 1px solid #e0e0e0;
+}
+
+mat-sidenav-content {
+  padding: 20px;
+  background-color: #f0f2f5;
+  transition: background-color 0.3s;
+}
+
+mat-sidenav-content:hover {
+  background-color: #e9e9e9;
+}

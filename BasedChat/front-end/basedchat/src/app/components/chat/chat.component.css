@@ -1,0 +1,46 @@
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.message-card {
+  display: inline-block;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  transition: transform 0.3s ease-in-out;
+}
+
+.from-me {
+  text-align: right;
+}
+
+.from-them .message-card {
+  background-color: #e3f2fd;
+}
+
+.from-me .message-card {
+  background-color: #c8e6c9;
+}
+
+.message-card:hover {
+  transform: scale(1.02);
+}
+
+.message-input-form {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.full-width {
+  width: 100%;
+}

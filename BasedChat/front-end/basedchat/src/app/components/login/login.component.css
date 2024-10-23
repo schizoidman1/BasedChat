@@ -1,0 +1,34 @@
+.login-card {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 20px;
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.login-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.full-width-button {
+  margin-top: 20px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.full-width-button:hover {
+  background-color: #5c6bc0; /* Mudança de cor sutil */
+  transform: translateY(-3px);
+}
+
+mat-form-field {
+  transition: all 0.3s;
+}
+
+mat-form-field:hover,
+mat-form-field.mat-focused {
+  box-shadow: 0 0 10px rgba(98, 0, 234, 0.1);
+}

@@ -7,11 +7,17 @@ import { RegisterComponent } from './components/register/register.component';
 
 // Opcional: importar o AuthGuard se desejar proteger rotas
 import { AuthGuard } from './guards/auth.guard';
+import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 
 const routes: Routes = [
-  { path: '', component: ChatComponent, canActivate: [AuthGuard] }, // Protegendo a rota do chat
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  {
+    path: '',
+    component: MainLayoutComponent, // Novo componente pai para gerenciar amigos e chat
+    canActivate: [AuthGuard], // Guard para proteger esta rota apenas para usuários autenticados
+  },
+  { path: '**', redirectTo: '' }, // Redireciona qualquer rota inválida para a principal
   // Adicione outras rotas conforme necessário
 ];
 

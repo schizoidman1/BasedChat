@@ -1,15 +1,19 @@
-<h3>Amigos</h3>
-<ul>
-  <li *ngFor="let friend of friends" (click)="selectFriend(friend._id)">
-    {{ friend.username }}
-  </li>
-</ul>
-
-<div>
-  <input
-    type="text"
-    [(ngModel)]="newFriendUsername"
-    placeholder="Adicionar amigo pelo username"
-  />
-  <button (click)="addFriend()">Adicionar Amigo</button>
-</div>
+<mat-card class="friends-card">
+  <mat-card-header>
+    <mat-card-title>Amigos</mat-card-title>
+  </mat-card-header>
+  <mat-list>
+    <mat-list-item *ngFor="let friend of friends" (click)="selectFriend(friend._id)" class="friend-item">
+      <mat-icon matListIcon>person</mat-icon>
+      <div matLine>{{ friend.username }}</div>
+    </mat-list-item>
+  </mat-list>
+  <mat-divider></mat-divider>
+  <div class="add-friend-section">
+    <mat-form-field appearance="outline">
+      <mat-label>Adicionar amigo</mat-label>
+      <input matInput [(ngModel)]="newFriendUsername" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="addFriend()">Adicionar</button>
+  </div>
+</mat-card>
