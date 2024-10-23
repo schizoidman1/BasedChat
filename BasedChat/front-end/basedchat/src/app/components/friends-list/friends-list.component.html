@@ -1,0 +1,15 @@
+<h3>Amigos</h3>
+<ul>
+  <li *ngFor="let friend of friends" (click)="selectFriend(friend._id)">
+    {{ friend.username }}
+  </li>
+</ul>
+
+<div>
+  <input
+    type="text"
+    [(ngModel)]="newFriendUsername"
+    placeholder="Adicionar amigo pelo username"
+  />
+  <button (click)="addFriend()">Adicionar Amigo</button>
+</div>

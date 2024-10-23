@@ -1,0 +1,17 @@
+<button (click)="logout()">Sair</button>
+
+<div *ngIf="selectedUserId; else selectFriendMessage">
+    <div class="messages">
+      <div *ngFor="let message of messages">
+        <strong>{{ message.sender === selectedUserId ? 'Amigo' : 'Você' }}:</strong> {{ message.content }}
+      </div>
+    </div>
+    <form (ngSubmit)="sendMessage()">
+      <input type="text" [(ngModel)]="messageContent" name="messageContent" placeholder="Digite sua mensagem" required />
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+  <ng-template #selectFriendMessage>
+    <p>Selecione um amigo para começar a conversar.</p>
+  </ng-template>
+  

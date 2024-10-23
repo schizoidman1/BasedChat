@@ -1,0 +1,15 @@
+/* styles.css */
+.container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .sidebar {
+    width: 25%;
+    border-right: 1px solid #ccc;
+  }
+  
+  .chat-area {
+    width: 75%;
+  }
+  
