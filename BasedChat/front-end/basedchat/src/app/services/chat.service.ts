@@ -16,4 +16,5 @@ export class ChatService {
   getMessages(userId: string) {
     return this.http.get(`${this.apiUrl}/${userId}`);
   }
+  
 }

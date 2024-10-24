@@ -21,6 +21,7 @@ export class FriendsListComponent implements OnInit {
   loadFriends() {
     this.authService.getFriends().subscribe(
       (friends: any) => {
+        console.log('Amigos carregados:', friends);
         this.friends = friends;
       },
       (err: any) => {
@@ -29,6 +30,7 @@ export class FriendsListComponent implements OnInit {
       }
     );
   }
+  
 
 
   addFriend() {

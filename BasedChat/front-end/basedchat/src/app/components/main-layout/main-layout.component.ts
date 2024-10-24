@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -8,8 +9,13 @@ import { Component } from '@angular/core';
 export class MainLayoutComponent {
   selectedUserId: string = '';
 
-  // Atualiza o usuário selecionado quando a lista de amigos emite o evento
-  onFriendSelected(friendId: string) {
+  constructor(public authService: AuthService) {}
+
+  logout(): void {
+    this.authService.logout();
+  }
+
+  onFriendSelected(friendId: string): void {
     this.selectedUserId = friendId;
   }
 }

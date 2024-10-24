@@ -1,21 +1,29 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
-import { AppRoutingModule } from './app-routing.module'; // Certifique-se de que este está importado
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms'; // Importar FormsModule
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; // Importar HttpClientModule
 
-// Importar os componentes criados
+// Angular Material Modules
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatInputModule } from '@angular/material/input';
+import { MatListModule } from '@angular/material/list';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
+// Components
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { FriendsListComponent } from './components/friends-list/friends-list.component';
+import { MainLayoutComponent } from './components/main-layout/main-layout.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
-
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -23,20 +31,26 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     LoginComponent,
     RegisterComponent,
     ChatComponent,
-    FriendsListComponent
+    FriendsListComponent,
+    MainLayoutComponent,
+    ProfileComponent
   ],
   imports: [
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatInputModule,
     BrowserModule,
     AppRoutingModule,
-    FormsModule, // Adicionar FormsModule
-    HttpClientModule // Adicionar HttpClientModule
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatInputModule,
+    MatListModule,
+    MatSidenavModule,
   ],
-  providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
-  ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

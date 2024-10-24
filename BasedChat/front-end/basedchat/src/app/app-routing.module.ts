@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ChatComponent } from './components/chat/chat.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 // Opcional: importar o AuthGuard se desejar proteger rotas
 import { AuthGuard } from './guards/auth.guard';
@@ -12,6 +13,7 @@ import { MainLayoutComponent } from './components/main-layout/main-layout.compon
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
+  { path: 'profile', component: ProfileComponent },
   {
     path: '',
     component: MainLayoutComponent, // Novo componente pai para gerenciar amigos e chat

@@ -1,5 +1,6 @@
 const Message = require('../models/Message');
 const Chat = require('../models/Chat');
+const bcrypt = require('bcrypt');
 
 // Enviar uma nova mensagem
 exports.sendMessage = async (req, res) => {

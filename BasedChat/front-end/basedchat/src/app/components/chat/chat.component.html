@@ -1,28 +1,39 @@
 <div class="chat-container" *ngIf="selectedUserId; else selectFriendMessage">
-  <div class="messages" (scroll)="onScrollUp()">
+  <div class="messages">
     <div *ngFor="let message of messages" [ngClass]="{'from-me': message.sender._id !== selectedUserId, 'from-them': message.sender._id === selectedUserId}">
-      <div *ngIf="message.type === 'text'" class="message-card">
-        <strong>{{ message.sender.username }}:</strong> {{ message.content }}
+      <div class="message-card">
+        <strong>{{ message.sender._id === selectedUserId ? 'Você' : message.sender.username }}:</strong>
+        <span>{{ message.content }}</span>
+
+        <!-- Mostrar botões de edição e exclusão apenas se a mensagem pertencer ao usuário -->
+        <div *ngIf="message.sender._id !== selectedUserId" class="message-actions">
+          <button mat-icon-button (click)="startEditing(message._id, message.content)" *ngIf="editingMessageId !== message._id">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteMessage(message._id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+
+        <!-- Mostrar um marcador para indicar que a mensagem está sendo editada -->
+        <span *ngIf="editingMessageId === message._id" class="editing-indicator">(Editando...)</span>
       </div>
-      <div *ngIf="message.type === 'image'" class="message-card">
-        <strong>{{ message.sender.username }}:</strong>
-        <img [src]="message.attachments[0]?.url" alt="Image message" class="message-image">
-      </div>
-      <!-- Adicionar lógica similar para outros tipos, como vídeo, áudio, etc. -->
     </div>
   </div>
 
-  <form (ngSubmit)="sendMessage()" class="message-input-form">
+  <form (ngSubmit)="editingMessageId ? updateMessage() : sendMessage()" class="message-input-form">
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Digite sua mensagem</mat-label>
+      <mat-label>{{ editingMessageId ? 'Editar mensagem' : 'Digite sua mensagem' }}</mat-label>
       <input matInput [(ngModel)]="messageContent" name="messageContent" required />
     </mat-form-field>
     <button mat-icon-button color="primary" type="submit">
-      <mat-icon>send</mat-icon>
+      <mat-icon>{{ editingMessageId ? 'save' : 'send' }}</mat-icon>
+    </button>
+    <button *ngIf="editingMessageId" mat-icon-button color="warn" (click)="cancelEditing()">
+      <mat-icon>cancel</mat-icon>
     </button>
   </form>
 </div>
-
 <ng-template #selectFriendMessage>
   <p>Selecione um amigo para começar a conversar.</p>
 </ng-template>
