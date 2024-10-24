@@ -37,7 +37,7 @@ O projeto está dividido em duas pastas principais:
 ```
 BasedChat/
   |
-  |-- front-end/
+  |-- front-end/basedchat
   |   |-- src/
   |       |-- app/
   |           |-- components/      # Componentes do Angular (chat, login, friends-list, profile, etc)
