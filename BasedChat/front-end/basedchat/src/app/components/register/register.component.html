@@ -1,61 +1,57 @@
-<mat-card class="register-card">
-  <mat-card-header>
-    <mat-card-title>Registrar</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <form [formGroup]="registerForm" (ngSubmit)="register()">
+<div class="register-container">
+  <div class="register-card">
+    <h2 class="register-title">Crie Sua Conta</h2>
+    <form [formGroup]="registerForm" (ngSubmit)="register()" class="form-register">
       
-      <mat-form-field appearance="fill">
-        <mat-label>Nome Completo</mat-label>
-        <input matInput formControlName="fullName" placeholder="Digite seu nome completo">
-        <mat-error *ngIf="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched">
+      <div class="form-field">
+        <label for="fullName" class="form-label">Nome Completo</label>
+        <input id="fullName" type="text" formControlName="fullName" class="input-field" placeholder="Digite seu nome completo" required />
+        <span class="error-message" *ngIf="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched">
           Nome completo é obrigatório e deve ter pelo menos 3 caracteres.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Nome de Usuário</mat-label>
-        <input matInput formControlName="username" placeholder="Digite seu nome de usuário">
-        <mat-error *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
-          Nome de usuário é obrigatório e deve ter pelo menos 3 caracteres.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Email</mat-label>
-        <input matInput formControlName="email" type="email" placeholder="Digite seu email">
-        <mat-error *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
-          Por favor, insira um email válido.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Telefone</mat-label>
-        <input matInput formControlName="phone" type="text" placeholder="Digite seu número de telefone (opcional)">
-        <mat-error *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched">
-          Por favor, insira um número de telefone válido.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Senha</mat-label>
-        <input matInput type="password" formControlName="password" placeholder="Digite sua senha">
-        <mat-error *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
-          A senha é obrigatória e deve ter pelo menos 6 caracteres.
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="fill">
-        <mat-label>Confirmar Senha</mat-label>
-        <input matInput type="password" formControlName="confirmPassword" placeholder="Confirme sua senha">
-        <mat-error *ngIf="registerForm.hasError('passwordsMismatch') && registerForm.get('confirmPassword')?.touched">
-          As senhas não correspondem.
-        </mat-error>
-      </mat-form-field>
-
-      <div class="button-group">
-        <button mat-raised-button color="primary" type="submit">Registrar</button>
+        </span>
       </div>
+
+      <div class="form-field">
+        <label for="username" class="form-label">Nome de Usuário</label>
+        <input id="username" type="text" formControlName="username" class="input-field" placeholder="Digite seu nome de usuário" required />
+        <span class="error-message" *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+          Nome de usuário é obrigatório e deve ter pelo menos 3 caracteres.
+        </span>
+      </div>
+
+      <div class="form-field">
+        <label for="email" class="form-label">Email</label>
+        <input id="email" type="email" formControlName="email" class="input-field" placeholder="Digite seu email" required />
+        <span class="error-message" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+          Por favor, insira um email válido.
+        </span>
+      </div>
+
+      <div class="form-field">
+        <label for="phone" class="form-label">Telefone</label>
+        <input id="phone" type="text" formControlName="phone" class="input-field" placeholder="Digite seu número de telefone (opcional)" />
+        <span class="error-message" *ngIf="registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched">
+          Por favor, insira um número de telefone válido.
+        </span>
+      </div>
+
+      <div class="form-field">
+        <label for="password" class="form-label">Senha</label>
+        <input id="password" type="password" formControlName="password" class="input-field" placeholder="Digite sua senha" required />
+        <span class="error-message" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+          A senha é obrigatória e deve ter pelo menos 6 caracteres.
+        </span>
+      </div>
+
+      <div class="form-field">
+        <label for="confirmPassword" class="form-label">Confirmar Senha</label>
+        <input id="confirmPassword" type="password" formControlName="confirmPassword" class="input-field" placeholder="Confirme sua senha" required />
+        <span class="error-message" *ngIf="registerForm.hasError('passwordsMismatch') && registerForm.get('confirmPassword')?.touched">
+          As senhas não correspondem.
+        </span>
+      </div>
+
+      <button type="submit" class="submit-button">Registrar</button>
     </form>
-  </mat-card-content>
-</mat-card>
+  </div>
+</div>

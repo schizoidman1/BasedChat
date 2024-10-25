@@ -25,8 +25,7 @@ const UserSchema = new mongoose.Schema({
     required: true,
   },
   avatar: {
-    type: String,
-    default: 'localhost:3000/uploads/default-avatar.png' // URL de um avatar padrão
+    type: String
   },
   status: {
     type: String,
@@ -58,7 +57,7 @@ const UserSchema = new mongoose.Schema({
   timestamps: true // Adiciona `createdAt` e `updatedAt` automaticamente
 });
 
-// Hash da senha antes de salvar
+/*// Hash da senha antes de salvar
 UserSchema.pre('save', async function(next) {
   if (!this.isModified('passwordHash')) return next();
 
@@ -69,7 +68,7 @@ UserSchema.pre('save', async function(next) {
   } catch (err) {
     next(err);
   }
-});
+});*/
 
 // Método para verificar a senha
 UserSchema.methods.comparePassword = function(candidatePassword) {

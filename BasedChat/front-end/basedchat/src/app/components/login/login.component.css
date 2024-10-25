@@ -1,34 +1,163 @@
+/* Container principal que ocupa a tela inteira */
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f9fafb;
+  padding: 1rem;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Animação de fade in para o container */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Cartão de login que contém todos os elementos */
 .login-card {
+  width: 100%;
   max-width: 400px;
-  margin: 100px auto;
-  padding: 20px;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .login-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
-.full-width {
+/* Título do formulário */
+.login-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #111827;
+  transition: color 0.3s;
+}
+
+/* Formulário de login */
+.form-login {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Campo de formulário - contém o label e o input */
+.form-field {
+  position: relative;
+  text-align: left;
+}
+
+/* Label de cada campo */
+.form-label {
+  position: absolute;
+  top: -10px;
+  left: 12px;
+  background-color: #ffffff;
+  padding: 0 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #4b5563;
+  transform: scale(1);
+  transition: all 0.2s ease-in-out;
+}
+
+.input-field:focus + .form-label,
+.input-field:not(:placeholder-shown) + .form-label {
+  color: #6366f1;
+  font-weight: 600;
+  transform: translateY(-10px) scale(1);
+}
+
+/* Campo de input */
+.input-field {
+  width: 90%;
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  font-size: 1rem;
+  color: #111827;
+  background-color: #f9fafb;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.input-field:focus {
+  border-color: #6366f1;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+
+/* Botão de submissão */
+.submit-button {
   width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 12px;
+  background-color: #6366f1;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
 }
 
-.full-width-button {
-  margin-top: 20px;
-  transition: background-color 0.3s, transform 0.2s;
+.submit-button:hover {
+  background-color: #4f46e5;
 }
 
-.full-width-button:hover {
-  background-color: #5c6bc0; /* Mudança de cor sutil */
-  transform: translateY(-3px);
+.submit-button:active {
+  transform: translateY(3px);
 }
 
-mat-form-field {
-  transition: all 0.3s;
+/* Divisor para separar o formulário do link de registro */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+  font-size: 0.875rem;
+  color: #9ca3af;
 }
 
-mat-form-field:hover,
-mat-form-field.mat-focused {
-  box-shadow: 0 0 10px rgba(98, 0, 234, 0.1);
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #e5e7eb;
+}
+
+.divider span {
+  padding: 0 0.5rem;
+}
+
+/* Link para registrar-se */
+.register-link {
+  font-size: 0.875rem;
+  color: #4b5563;
+}
+
+.link {
+  color: #6366f1;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #4f46e5;
+  text-decoration: underline;
 }

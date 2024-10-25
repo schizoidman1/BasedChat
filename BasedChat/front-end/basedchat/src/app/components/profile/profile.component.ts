@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-profile',
@@ -11,17 +12,23 @@ export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   passwordForm: FormGroup;
   avatarPreview: string | ArrayBuffer | null = '';
+  currentAvatar: SafeUrl | string = 'uploads/default-avatar.png';
 
   constructor(
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private sanitizer: DomSanitizer
   ) {
     // Formulário para editar perfil
     this.profileForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(3)]],
-      bio: ['', [Validators.maxLength(150)]],
-      status: ['', [Validators.maxLength(50)]],
+      username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
       email: ['', [Validators.required, Validators.email]],
+      bio: ['', [Validators.maxLength(200)]], // Atualizado para refletir o novo schema
+      status: ['', [Validators.maxLength(100)]], // Atualizado para refletir o novo schema
+      phoneNumber: ['', [Validators.pattern(/^\+[1-9]\d{1,14}$/)]], // Validação para formato E.164
+      avatar: [''], // Avatar é opcional, portanto não precisamos de validações adicionais
+      isOnline: [false], // Campo booleano para indicar se o usuário está online ou não
+      lastLogin: [''] // Este campo é apenas para visualização, não é editável pelo usuário
     });
 
     // Formulário para alterar senha
@@ -39,6 +46,9 @@ export class ProfileComponent implements OnInit {
     this.authService.getUserProfile().subscribe(
       profile => {
         this.profileForm.patchValue(profile);
+        if (profile.avatar) {
+          this.currentAvatar = this.getSafeUrl(profile.avatar);
+        }
       },
       err => {
         console.error('Erro ao carregar perfil', err);
@@ -81,6 +91,7 @@ export class ProfileComponent implements OnInit {
       // Previsualizar a imagem
       reader.onload = () => {
         this.avatarPreview = reader.result;
+        this.currentAvatar = reader.result; // Atualiza a visualização atual
       };
       reader.readAsDataURL(file);
       
@@ -96,6 +107,7 @@ export class ProfileComponent implements OnInit {
       );
     }
   }
+
 
   // Alterar senha do usuário
   changePassword(): void {
@@ -117,4 +129,12 @@ export class ProfileComponent implements OnInit {
     );
   }
   
+  // Obter URL segura para o avatar
+  getAvatar(user: any): SafeUrl {
+    return user.avatar ? this.getSafeUrl(user.avatar) : this.getSafeUrl('uploads/default-avatar.png');
+  }
+
+  getSafeUrl(url: string): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl("http://localhost:3000/" + url);
+  }
 }

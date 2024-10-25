@@ -21,7 +21,7 @@ exports.register = async (req, res) => {
 
     const newUser = new User({
       username,
-      password: hashedPassword, // Usando o campo `password`
+      passwordHash: hashedPassword, // Usando o campo `password`
       email,
     });
 
@@ -56,7 +56,7 @@ exports.login = async (req, res) => {
       return res.status(401).send({ message: 'Credenciais inválidas.' });
     }
 
-    const token = jwt.sign({ userId: user._id }, 'sua_chave_secreta', { expiresIn: '1h' });
+    const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
     res.status(200).send({ token });
 
   } catch (error) {

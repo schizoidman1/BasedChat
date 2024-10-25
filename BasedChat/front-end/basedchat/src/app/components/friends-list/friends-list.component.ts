@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-friends-list',
@@ -12,7 +13,7 @@ export class FriendsListComponent implements OnInit {
 
   @Output() selectFriendEvent = new EventEmitter<string>();
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private sanitizer: DomSanitizer) {}
 
   ngOnInit(): void {
     this.loadFriends();
@@ -31,8 +32,7 @@ export class FriendsListComponent implements OnInit {
     );
   }
   
-
-
+  
   addFriend() {
     if (this.newFriendUsername.trim()) {
       this.authService.addFriend(this.newFriendUsername).subscribe(
@@ -53,7 +53,11 @@ export class FriendsListComponent implements OnInit {
     this.selectFriendEvent.emit(friendId);
   }
 
-  getAvatar(friend: any): string {
-    return friend.avatar ? friend.avatar : 'assets/default-avatar.png';
-  }  
+  getAvatar(friend: any): SafeUrl {
+    return friend.avatar ? this.getSafeUrl(friend.avatar) : this.getSafeUrl('uploads/default-user.png');
+  }
+
+  getSafeUrl(url: string) {
+    return this.sanitizer.bypassSecurityTrustUrl("http://localhost:3000/"+url);
+  }
 }
