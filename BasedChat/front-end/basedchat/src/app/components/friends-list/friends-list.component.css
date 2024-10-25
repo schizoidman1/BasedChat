@@ -1,18 +1,100 @@
 .friends-card {
-  margin: 10px;
-  padding: 15px;
-  transition: box-shadow 0.3s ease-in-out;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
-.friends-card:hover {
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+.card-header {
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 1.5em;
+  color: #333;
+}
+
+.friend-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 .friend-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  border-bottom: 1px solid #e0e0e0;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
 }
 
 .friend-item:hover {
-  background-color: #eeeeee;
+  background-color: #f9f9f9;
+}
+
+.friend-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.friend-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.friend-username {
+  font-weight: bold;
+  color: #333;
+}
+
+.friend-status {
+  font-size: 0.85em;
+  color: #777;
+}
+
+.divider {
+  margin: 20px 0;
+  border: none;
+  border-top: 1px solid #e0e0e0;
+}
+
+.add-friend-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px; 
+}
+
+.add-friend-input {
+  flex: 1;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 5px;
+  margin-right: 5px;
+}
+
+.add-friend-button {
+  padding: 10px 15px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-friend-button:hover {
+  background-color: #0056b3;
 }

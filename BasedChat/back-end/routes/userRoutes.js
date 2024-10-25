@@ -31,6 +31,7 @@ router.post('/register', userController.register);
 router.post('/login', userController.login);
 router.post('/add-friend', auth, userController.addFriend);
 
+
 // Rota para fazer upload da imagem de perfil
 router.post('/upload-avatar', auth, upload.single('avatar'), async (req, res) => {
   try {

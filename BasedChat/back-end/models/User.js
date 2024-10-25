@@ -26,7 +26,7 @@ const UserSchema = new mongoose.Schema({
   },
   avatar: {
     type: String,
-    default: 'https://example.com/default-avatar.png' // URL de um avatar padrão
+    default: 'localhost:3000/uploads/default-avatar.png' // URL de um avatar padrão
   },
   status: {
     type: String,
@@ -35,7 +35,8 @@ const UserSchema = new mongoose.Schema({
   },
   friends: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    default: []
   }],
   phoneNumber: {
     type: String,

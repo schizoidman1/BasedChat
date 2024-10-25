@@ -30,7 +30,8 @@ mongoose.connect('mongodb://localhost:27017/basedchatdb', {
 // Rotas
 app.use('/api/users', userRoutes);
 app.use('/api/messages', messageRoutes);
-app.use('/uploads', express.static(uploadDir));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

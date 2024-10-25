@@ -1,17 +1,17 @@
 <div class="chat-container" *ngIf="selectedUserId; else selectFriendMessage">
-  <div class="messages">
-    <div *ngFor="let message of messages" [ngClass]="{'from-me': message.sender._id !== selectedUserId, 'from-them': message.sender._id === selectedUserId}">
+  <div class="messages" (scroll)="onScrollUp()">
+    <div *ngFor="let message of messages" [ngClass]="{'from-me': message.sender._id !== selectedUserId, 'from-them': message.sender._id === selectedUserId}" class="message-wrapper">
       <div class="message-card">
         <strong>{{ message.sender._id === selectedUserId ? 'Você' : message.sender.username }}:</strong>
         <span>{{ message.content }}</span>
 
         <!-- Mostrar botões de edição e exclusão apenas se a mensagem pertencer ao usuário -->
         <div *ngIf="message.sender._id !== selectedUserId" class="message-actions">
-          <button mat-icon-button (click)="startEditing(message._id, message.content)" *ngIf="editingMessageId !== message._id">
-            <mat-icon>edit</mat-icon>
+          <button class="action-button edit-button" (click)="startEditing(message._id, message.content)" *ngIf="editingMessageId !== message._id">
+            ✎
           </button>
-          <button mat-icon-button color="warn" (click)="deleteMessage(message._id)">
-            <mat-icon>delete</mat-icon>
+          <button class="action-button delete-button" (click)="deleteMessage(message._id)">
+            🗑
           </button>
         </div>
 
@@ -22,18 +22,12 @@
   </div>
 
   <form (ngSubmit)="editingMessageId ? updateMessage() : sendMessage()" class="message-input-form">
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>{{ editingMessageId ? 'Editar mensagem' : 'Digite sua mensagem' }}</mat-label>
-      <input matInput [(ngModel)]="messageContent" name="messageContent" required />
-    </mat-form-field>
-    <button mat-icon-button color="primary" type="submit">
-      <mat-icon>{{ editingMessageId ? 'save' : 'send' }}</mat-icon>
-    </button>
-    <button *ngIf="editingMessageId" mat-icon-button color="warn" (click)="cancelEditing()">
-      <mat-icon>cancel</mat-icon>
-    </button>
+    <input class="message-input" [(ngModel)]="messageContent" name="messageContent" [placeholder]="editingMessageId ? 'Editar mensagem' : 'Digite sua mensagem'" required />
+    <button class="send-button" type="submit">{{ editingMessageId ? 'Salvar' : 'Enviar' }}</button>
+    <button *ngIf="editingMessageId" class="cancel-button" type="button" (click)="cancelEditing()">Cancelar</button>
   </form>
 </div>
+
 <ng-template #selectFriendMessage>
-  <p>Selecione um amigo para começar a conversar.</p>
+  <p class="select-friend-message">Selecione um amigo para começar a conversar.</p>
 </ng-template>

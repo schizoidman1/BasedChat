@@ -52,4 +52,8 @@ export class FriendsListComponent implements OnInit {
   selectFriend(friendId: string) {
     this.selectFriendEvent.emit(friendId);
   }
+
+  getAvatar(friend: any): string {
+    return friend.avatar ? friend.avatar : 'assets/default-avatar.png';
+  }  
 }

@@ -65,7 +65,7 @@ export class AuthService {
   addFriend(friendUsername: string) {
     return this.http.post(`${this.apiUrl}/users/add-friend`, { friendUsername });
   }
-
+  
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token');

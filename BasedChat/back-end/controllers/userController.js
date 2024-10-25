@@ -80,7 +80,7 @@ exports.getFriends = async (req, res) => {
 
 exports.addFriend = async (req, res) => {
   try {
-    const userId = req.user.id; // O ID do usuário autenticado
+    const userId = req.userId; // O ID do usuário autenticado
     const { friendUsername } = req.body;
 
     // Encontrar o usuário atual
@@ -96,7 +96,7 @@ exports.addFriend = async (req, res) => {
     }
 
     // Verificar se já são amigos
-    if (user.friends.includes(friend._id)) {
+    if (user.friends.some((id) => id.equals(friend._id))) {
       return res.status(400).json({ message: 'Este usuário já está na sua lista de amigos' });
     }
 

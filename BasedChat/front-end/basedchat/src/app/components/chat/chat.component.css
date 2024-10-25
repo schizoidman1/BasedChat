@@ -1,46 +1,130 @@
 .chat-container {
+  max-width: 600px;
+  margin: 20px auto;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 500px;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  overflow: hidden;
 }
 
 .messages {
   flex: 1;
-  overflow-y: auto;
-  margin-bottom: 10px;
   padding: 10px;
+  overflow-y: auto;
+  border-bottom: 1px solid #ddd;
+}
+
+.message-wrapper {
+  margin-bottom: 10px;
 }
 
 .message-card {
-  display: inline-block;
   padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 15px;
-  transition: transform 0.3s ease-in-out;
+  border-radius: 8px;
+  background-color: #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.3s ease;
 }
 
 .from-me {
-  text-align: right;
+  align-self: flex-end;
+  background-color: #d1f5d3; /* Cor diferenciada para mensagens enviadas pelo usuário */
 }
 
-.from-them .message-card {
-  background-color: #e3f2fd;
+.from-them {
+  align-self: flex-start;
+  background-color: #f1f1f1;
 }
 
-.from-me .message-card {
-  background-color: #c8e6c9;
+.message-actions {
+  display: flex;
+  margin-left: 10px;
 }
 
-.message-card:hover {
-  transform: scale(1.02);
+.action-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  margin-left: 5px;
+  transition: color 0.3s ease;
+}
+
+.action-button:hover {
+  color: #007bff;
+}
+
+.edit-button {
+  color: #28a745;
+}
+
+.delete-button {
+  color: #dc3545;
+}
+
+.editing-indicator {
+  font-style: italic;
+  color: #999;
+  margin-left: 5px;
 }
 
 .message-input-form {
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  padding: 10px;
+  border-top: 1px solid #ddd;
+  background-color: #fafafa;
 }
 
-.full-width {
-  width: 100%;
+.message-input {
+  flex: 1;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+.send-button {
+  padding: 10px 15px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.send-button:hover {
+  background-color: #0056b3;
+}
+
+.cancel-button {
+  padding: 10px 15px;
+  font-size: 1em;
+  color: #fff;
+  background-color: #dc3545;
+  border: none;
+  border-radius: 8px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-button:hover {
+  background-color: #c82333;
+}
+
+.select-friend-message {
+  text-align: center;
+  font-size: 1.2em;
+  color: #777;
+  padding: 20px;
 }

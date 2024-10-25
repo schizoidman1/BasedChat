@@ -5,7 +5,7 @@ const bcrypt = require('bcrypt');
 // Enviar uma nova mensagem
 exports.sendMessage = async (req, res) => {
   const { chatId, content, type, attachments } = req.body;
-  const senderId = req.user.id; // Obtido via middleware de autenticação
+  const senderId = req.userId; // Obtido via middleware de autenticação
 
   try {
     // Criar uma nova mensagem com os campos apropriados

@@ -1,19 +1,21 @@
-<mat-card class="friends-card">
-  <mat-card-header>
-    <mat-card-title>Amigos</mat-card-title>
-  </mat-card-header>
-  <mat-list>
-    <mat-list-item *ngFor="let friend of friends" (click)="selectFriend(friend._id)" class="friend-item">
-      <img matListAvatar [src]="friend.avatar" alt="{{ friend.username }}'s avatar">
-      <div matLine>{{ friend.username }}</div>
-      <div matLine class="friend-status">{{ friend.status }}</div>
-    </mat-list-item>
-  </mat-list>
-  <div class="add-friend-section">
-    <mat-form-field appearance="outline">
-      <mat-label>Adicionar amigo</mat-label>
-      <input matInput [(ngModel)]="newFriendUsername" />
-    </mat-form-field>
-    <button mat-raised-button color="primary" (click)="addFriend()">Adicionar</button>
+<div class="friends-card">
+  <div class="card-header">
+    <h2>Amigos</h2>
   </div>
-</mat-card>
+  <div class="card-content">
+    <ul class="friend-list">
+      <li *ngFor="let friend of friends" (click)="selectFriend(friend._id)" class="friend-item">
+        <img [src]="getAvatar(friend)" alt="{{ friend.username }}'s avatar" class="friend-avatar">
+        <div class="friend-info">
+          <span class="friend-username">{{ friend.username }}</span>
+          <span class="friend-status">{{ friend.status }}</span>
+        </div>
+      </li>
+    </ul>
+  </div>  
+  <hr class="divider">
+  <div class="add-friend-section">
+    <input type="text" [(ngModel)]="newFriendUsername" placeholder="Adicionar amigo" class="add-friend-input"/>
+    <button (click)="addFriend()" class="add-friend-button">Add</button>
+  </div>
+</div>
