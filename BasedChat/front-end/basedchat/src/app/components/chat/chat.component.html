@@ -1,23 +1,34 @@
-<div class="chat-container" *ngIf="selectedUserId; else selectFriendMessage">
+<div class="chat-container" [ngStyle]="{'background-image': chatBackgroundStyle}" *ngIf="selectedUserId; else selectFriendMessage">
+
+  <!-- Topo do chat contendo imagem do contato, nome e status -->
+  <div class="chat-header" (click)="openFriendDetail()" *ngIf="selectedFriend; else loadingFriend">
+    <img [src]="getAvatar(selectedFriend)" alt="Avatar do contato" class="chat-header-avatar">
+    <div class="chat-header-info">
+      <h2 class="chat-header-username">{{ selectedFriend?.username }}</h2>
+      <p class="chat-header-status">{{ selectedFriend?.isOnline ? 'Online' : 'Offline' }}</p>
+    </div>
+  </div>
+
   <div class="messages" (scroll)="onScrollUp()">
     <div *ngFor="let message of messages" [ngClass]="{'from-me': message.sender._id !== selectedUserId, 'from-them': message.sender._id === selectedUserId}" class="message-wrapper">
       <div class="message-card">
-        <strong>{{ message.sender._id === selectedUserId ? 'Você' : message.sender.username }}:</strong>
-        <span>{{ message.content }}</span>
-
+        <strong class="message-sender">{{ message.sender._id === selectedUserId ? 'Você' : message.sender.username }}:</strong>
+        <span class="message-content">{{ message.content }}</span>
+    
         <!-- Mostrar botões de edição e exclusão apenas se a mensagem pertencer ao usuário -->
         <div *ngIf="message.sender._id !== selectedUserId" class="message-actions">
-          <button class="action-button edit-button" (click)="startEditing(message._id, message.content)" *ngIf="editingMessageId !== message._id">
-            ✎
-          </button>
-          <button class="action-button delete-button" (click)="deleteMessage(message._id)">
-            🗑
-          </button>
+            <button class="action-button edit-button" (click)="startEditing(message._id, message.content)" *ngIf="editingMessageId !== message._id">
+                ✎
+            </button>
+            <button class="action-button delete-button" (click)="deleteMessage(message._id)">
+                🗑
+            </button>
         </div>
-
+    
         <!-- Mostrar um marcador para indicar que a mensagem está sendo editada -->
         <span *ngIf="editingMessageId === message._id" class="editing-indicator">(Editando...)</span>
-      </div>
+    </div>
+    
     </div>
   </div>
 
@@ -29,5 +40,15 @@
 </div>
 
 <ng-template #selectFriendMessage>
-  <p class="select-friend-message">Selecione um amigo para começar a conversar.</p>
+  <div class="select-friend-container">
+    <p class="select-friend-message">Selecione um amigo para começar a conversar.</p>
+    <img [src]="getSafeUrl('chat-wait-image.png')" alt="Aguardando para começar um chat" class="chat-wait-image">
+  </div>
+</ng-template>
+
+
+<ng-template #loadingFriend>
+  <div class="loading-container">
+    <p>Carregando amigo...</p>
+  </div>
 </ng-template>

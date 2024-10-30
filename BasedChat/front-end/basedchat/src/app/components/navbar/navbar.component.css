@@ -1,0 +1,72 @@
+/* Navbar geral */
+.navbar {
+    display: flex;
+    align-items: center;
+    background: #111827;
+    padding: 15px 30px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #e3e3e3;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  /* Logo do Navbar */
+  .navbar-logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    max-width: 1.5vw;
+  }
+  
+  /* Espaçador para centralizar os elementos corretamente */
+  .navbar-spacer {
+    flex: 1;
+  }
+  
+  /* Ações de logout */
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-logout {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+    font-weight: 500;
+  }
+  
+  .navbar-link {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1em;
+    cursor: pointer;
+    margin-right: 15px;
+    transition: color 0.3s ease;
+  }
+
+  .navbar-link:hover {
+    color: #007bff;
+  }
+
+  .navbar-logout:hover {
+    color: #ff3366; /* Cor de destaque ao passar o mouse */
+  }
+  
+  @media (max-width: 768px) {
+    .navbar-logo {
+      font-size: 1.5em;
+    }
+  
+    .navbar-logout {
+      font-size: 0.9em;
+    }
+  }
+  

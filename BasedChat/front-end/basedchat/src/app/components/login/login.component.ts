@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,11 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private sanitizer: DomSanitizer) {}
+
+  getSafeUrl(url: string) {
+    return this.sanitizer.bypassSecurityTrustUrl("http://localhost:4200/assets/"+url);
+  }
 
   login() {
     this.authService.login({ username: this.username, password: this.password }).subscribe(
@@ -24,6 +29,8 @@ export class LoginComponent {
         alert('Falha no login: ' + err.error.message);
       }
     );
-  }  
+  }
+  
+  
   
 }

@@ -1,0 +1,25 @@
+<nav class="navbar">
+  <div class="navbar-left">
+    <span class="navbar-logo">BasedChat </span>
+    <img [src]="getSafeUrl('logo')" alt="logo" class="navbar-logo">
+  </div>
+  <div class="navbar-spacer"></div>
+  <div class="navbar-actions" *ngIf="authService.isLoggedIn()">
+    <!-- Link condicional para /profile ou /chat -->
+    <ng-container *ngIf="currentRoute === '/profile'; else showChatLink">
+      <button (click)="navigateTo('/chat')" class="navbar-link">
+        💬 Chat
+      </button>
+    </ng-container>
+    <ng-template #showChatLink>
+      <button (click)="navigateTo('/profile')" class="navbar-link">
+        🙍‍♂️ Perfil
+      </button>
+    </ng-template>
+
+    <!-- Botão de logout -->
+    <button class="navbar-logout" (click)="logout()">
+      🔒 Sair
+    </button>
+  </div>
+</nav>

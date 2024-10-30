@@ -100,5 +100,16 @@ export class AuthService {
     return this.http.delete(`${this.apiUrl}/messages/${messageId}`, { headers });
   }
   
+  getFriendDetails(userId: string): Observable<any> {
+  const token = localStorage.getItem('token');
+  if (!token) {
+    console.error('Token não encontrado. Usuário não está autenticado.');
+    throw new Error('Token não encontrado.');
+  }
+
+  const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  return this.http.get(`${this.apiUrl}/users/${userId}`, { headers });
+}
+
 
 }

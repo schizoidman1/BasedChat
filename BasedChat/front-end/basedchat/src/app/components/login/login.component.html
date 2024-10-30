@@ -1,7 +1,7 @@
 <div class="login-container">
   <div class="login-card">
     <div>
-      <img [src]="" alt="login image" class="login-image">
+      <img [src]="getSafeUrl('login-image.png')" alt="login image" class="login-image">
     </div>
     <h2 class="login-title">Entre na sua Conta</h2>
     <form (ngSubmit)="login()" class="form-login">

@@ -77,6 +77,46 @@ exports.getFriends = async (req, res) => {
   }
 };
 
+// Função para buscar detalhes do usuário pelo ID
+exports.getUserById = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    // Buscar o usuário pelo seu ID
+    const user = await User.findById(userId).select('-passwordHash'); // Remova o passwordHash para não ser exposto
+    if (!user) {
+      return res.status(404).send({ message: 'Usuário não encontrado.' });
+    }
+
+    res.status(200).send(user);
+  } catch (error) {
+    console.error('Erro ao buscar usuário:', error);
+    res.status(500).send({ message: 'Erro ao buscar usuário.', error });
+  }
+};
+
+exports.uploadAvatar = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).send({ message: 'Nenhum arquivo enviado.' });
+    }
+
+    // Atualizar o avatar do usuário
+    const user = await User.findById(req.userId);
+    if (!user) {
+      return res.status(404).send({ message: 'Usuário não encontrado.' });
+    }
+
+    user.avatar = `uploads/${req.file.filename}`;
+    await user.save();
+
+    res.status(200).send({ message: 'Avatar atualizado com sucesso!', avatar: user.avatar });
+  } catch (error) {
+    console.error('Erro ao fazer upload do avatar:', error);
+    res.status(500).send({ message: 'Erro ao fazer upload do avatar.', error });
+  }
+};
+
 
 exports.addFriend = async (req, res) => {
   try {

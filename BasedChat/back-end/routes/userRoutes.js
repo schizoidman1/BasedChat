@@ -27,6 +27,9 @@ router.get('/friends', auth, async (req, res) => {
   }
 });
 
+// Rota para obter detalhes do usuário pelo ID
+router.get('/:userId', auth, userController.getUserById);
+
 router.post('/register', userController.register);
 router.post('/login', userController.login);
 router.post('/add-friend', auth, userController.addFriend);

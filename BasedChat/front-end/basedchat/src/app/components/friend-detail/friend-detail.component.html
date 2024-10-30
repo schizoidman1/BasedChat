@@ -1,0 +1,10 @@
+<div class="friend-detail-overlay" (click)="closeDialog()"></div>
+<div class="friend-detail-container">
+  <img [src]="getAvatar(data)" alt="{{ data?.username }}'s avatar" class="friend-avatar">
+  <h2>{{ data?.username }}</h2>
+  <p class="friend-status">{{ data?.isOnline ? 'Online' : 'Offline' }}</p>
+  <p><strong>Email:</strong> {{ data?.email }}</p>
+  <p><strong>Número de telefone:</strong> {{ data?.phoneNumber || 'Não disponível' }}</p>
+  <p><strong>Bio:</strong> {{ data?.bio || 'Nenhuma bio adicionada' }}</p>
+  <button (click)="closeDialog()" class="close-button">Fechar</button>
+</div>
