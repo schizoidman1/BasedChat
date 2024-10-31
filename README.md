@@ -2,6 +2,8 @@
 
 BasedChat é uma aplicação de chat desenvolvida utilizando o stack MEAN (MongoDB, Express.js, Angular, Node.js). Este projeto replica funcionalidades semelhantes ao WhatsApp, onde os usuários podem adicionar amigos, trocar mensagens, atualizar seu perfil e compartilhar imagens de perfil.
 
+<img src="Esquema.png">
+
 ## Funcionalidades
 
 - **Cadastro e Login**: Os usuários podem se registrar e fazer login com um nome de usuário e senha.
