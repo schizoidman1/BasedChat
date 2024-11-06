@@ -13,6 +13,8 @@ BasedChat é uma aplicação de chat desenvolvida utilizando o stack MEAN (Mongo
 - **Perfil Personalizado**: Cada usuário pode definir um status, uma bio e alterar suas informações pessoais.
 - **Editar e Deletar Mensagens**: Os usuários podem editar ou deletar mensagens que enviaram.
 
+<img src="Diagrama de Classe.png">
+
 ## Tecnologias Utilizadas
 
 ### Backend
