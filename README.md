@@ -145,5 +145,6 @@ Sinta-se livre para contribuir com este projeto! Abra um pull request com suas m
 Este projeto é licenciado sob a [MIT License](LICENSE).
 
 ## Agradecimentos
-Agradecemos a todos que contribuíram e ajudaram a fazer o BasedChat acontecer! 🚀
+Agradecemos ao professor Vinicius Rosalen que contribuiu e ajudou com ensinamentos e material de estudo para que o BasedChat possa acontecer! 🚀
+
 
